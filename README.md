@@ -1,4 +1,4 @@
-# React Redux minimal starter kit (boilerplate)
+# React Redux electricity and water bills calculation app
 
 
 
