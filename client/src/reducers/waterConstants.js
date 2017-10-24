@@ -1,0 +1,5 @@
+export const waterActions = {
+    WATER_ADD: 'WATER_ADD',
+    WATER_ITEM_DELETE: 'WATER_ITEM_DELETE',
+    WATER_LIST_LOADED: 'WATER_LIST_LOADED'
+};

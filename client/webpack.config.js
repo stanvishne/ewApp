@@ -48,6 +48,6 @@ module.exports = {
       root: __dirname + '/public',
       verbose: true,
       dry: false, // true for simulation
-    }),
+    })
   ],
 };
