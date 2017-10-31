@@ -5,16 +5,13 @@ import { connect } from "react-redux";
 import  { modalContentMapper } from "common/modalMapper.js";
 import WaterList from './components/WaterList';
 import {sagaWaterActions} from 'sagas/sagaWaterConstants';
+import {waterActions} from 'reducers/waterConstants';
 
 function mapStateToProps(state) {
     
     return {
       water: null
     };
-}
-
-function test() {
-    console.log('gfgfg');
 }
 
 @connect(mapStateToProps)
@@ -27,7 +24,7 @@ export default class Water extends React.Component {
     }
     render() {
         return(
-            <div>
+            <div className='water'>
                 <Button onClick={()=>this.add()}>Add</Button>
                 <WaterList/>
             </div>
@@ -35,7 +32,13 @@ export default class Water extends React.Component {
     }
 
     add() {
-        this.props.dispatch({
+        const {dispatch} = this.props;
+
+        dispatch({
+            type: waterActions.WATER_ITEM_EDIT,
+            id: false
+        });
+        dispatch({
             type: 'SHOW_MODAL',
             data: {
                 content: modalContentMapper.WATER_EDITOR

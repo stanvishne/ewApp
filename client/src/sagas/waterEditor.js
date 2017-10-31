@@ -4,13 +4,12 @@ import {waterActions} from "reducers/waterConstants";
 
 export function* addWater(action) {
     // call the api to add/edit the user
-  yield call(ApiWater.addEdit);
+  const list = yield call(ApiWater.addEdit, action.values);
   //return action.callbackError("Some error");   // show an error when the API fails
 
-  // update the state by adding/editing the user
   yield put({
-    type: waterActions.WATER_ADD,
-    values: action.values,
+    type: waterActions.WATER_LIST_LOADED,
+    list
   });
 
   // success
@@ -20,16 +19,18 @@ export function* addWater(action) {
 export function* deleteWaterItem(action) {
   //yield call(ApiWater.itemDelete);
 
+  const list = yield call(ApiWater.deleteItem, action.item);
+  //return action.callbackError("Some error");   // show an error when the API fails
+
   yield put({
-    type: waterActions.WATER_ITEM_DELETE,
-    item: action.item,
+    type: waterActions.WATER_LIST_LOADED,
+    list
   });
-  //action.callbackSuccess();
 }
 
 export function* loadWaterList(action) {
   const list = yield call(ApiWater.fetchList);
-  console.log(list);
+  
     // save the users in state
     yield put({
       type: waterActions.WATER_LIST_LOADED,

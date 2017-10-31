@@ -4,6 +4,9 @@ import { push } from "react-router-redux";
 import { Table, Pagination } from "react-bootstrap";
 import WaterListItem from './WaterListItem';
 import {sagaWaterActions} from 'sagas/sagaWaterConstants';
+import {waterActions} from 'reducers/waterConstants';
+//import {modalActions} from 'reducers/modalConstants';
+import  { modalContentMapper } from "common/modalMapper.js";
 
 function mapStateToProps({water}) {    
     return {
@@ -16,7 +19,7 @@ export default class WaterList extends React.Component {
     render() {
         let {water = []} = this.props
         return (
-            <div>
+            <div className='water-list'>
                 <Table bordered hover responsive striped>
                     <thead>
                     <tr>
@@ -29,6 +32,8 @@ export default class WaterList extends React.Component {
                         <th>Sum from Moatza</th>
                         <th>Adiel</th>
                         <th>Stas</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -38,7 +43,7 @@ export default class WaterList extends React.Component {
                                 prevItem = water[index-1];
                             }
                             return (
-                                <WaterListItem onDelete={() => this.onDelete(item)} prevItem={prevItem} item={item} key={index}/>
+                                <WaterListItem onDelete={() => this.onDelete(item)} onEdit={() => this.onEdit(item)} prevItem={prevItem} item={item} key={index}/>
                             )
                         })}
                     </tbody>
@@ -54,4 +59,24 @@ export default class WaterList extends React.Component {
             item
         })
     }
+
+    onEdit(item) {
+        const {dispatch} = this.props;
+
+        
+
+        dispatch({
+            type: waterActions.WATER_ITEM_EDIT,
+            id: item.id
+        });
+
+        dispatch({
+            type: 'SHOW_MODAL',
+            data: {
+                content: modalContentMapper.WATER_EDITOR
+            }
+        })
+    }
+
+
 }

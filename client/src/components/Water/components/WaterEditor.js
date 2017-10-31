@@ -8,6 +8,10 @@ import FormSubmit from "components/common/FormSubmit";
 import {sagaWaterActions} from 'sagas/sagaWaterConstants';
 import {modalActions} from 'reducers/modalConstants';
 
+const INITIAL_VALUES = {
+  shmira: '171'
+}
+
 export class WaterEditor extends React.Component {
     constructor(props) {
         super(props);
@@ -71,12 +75,14 @@ const WaterEditorForm = reduxForm({
 
   function mapStateToProps(state, own_props) {
     //const user = state.users.find(x => Number(x.id) === Number(own_props.params.id)) || {};
-    const {form = {}} = state;
+    const {form = {}, waterEditor, water} = state
     const {water_editor = {}} = form;
     const {values = {}} = water_editor;
+    const editor = waterEditor ? water.find(el => el.id == waterEditor) : false;
     return {
       waterEditor: state.waterEditor,
-      values
+      values,
+      initialValues: editor || INITIAL_VALUES
     };
   }
 

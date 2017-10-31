@@ -19,7 +19,7 @@ function calculate({item, prevItem}) {
     }
 }
 
-const WaterListElement = ({item, prevItem, onDelete}) => {
+const WaterListElement = ({item, prevItem, onDelete, onEdit}) => {
     return (
         <tr>
             <td>#{item.id}</td>
@@ -33,11 +33,9 @@ const WaterListElement = ({item, prevItem, onDelete}) => {
             <td>{calculate({prevItem, item}).st}</td>
                         
             <td>
-                <Link disabled to={'user-edit/' + HTMLInputElement.id}>
-                    <Button disabled readOnly bsSize="xsmall">
+                <Button onClick={onEdit} bsSize="xsmall">
                     Edit <Glyphicon glyph="edit"/>
-                    </Button>
-                </Link>
+                </Button>
             </td>
             <td>
                 <Button bsSize="xsmall" className="user-delete" onClick={onDelete}>
