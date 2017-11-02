@@ -72,5 +72,15 @@ module.exports = app => {
             }, error => {
                 res.json({});
             })
+    });
+    
+    app.post(`/login`, (req, res) => {
+        let user = req.body;
+        db.login(user)
+            .then(result => {
+                res.json(result);
+            }, error => {
+                res.json({logged: false});
+            })
     }); 
 };

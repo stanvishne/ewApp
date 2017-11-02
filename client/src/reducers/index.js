@@ -5,6 +5,7 @@ import modal from './modal';
 import users from "./users";
 import water from "./water";
 import waterEditor from "./waterEditor";
+import login from './login';
 
 // main reducers
 export const reducers = combineReducers({
@@ -22,6 +23,7 @@ export const reducers = combineReducers({
   }),
   users: users,
   water: water,
+  login: login,
   waterEditor: waterEditor,
   modal: modal
 });

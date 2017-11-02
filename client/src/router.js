@@ -7,15 +7,30 @@ import UserEdit from "./components/UserEdit";
 import NotFound from "./components/NotFound";
 import Water from "./components/Water/Water";
 import Electricity from "./components/Electricity/Electricity";
+import Auth from "./components/Auth/Auth";
+
+function checkAuth(nextState, replace, store) {
+ // console.log(store.getState());
+  //console.log(replace);
+  
+  const state = store.getState();
+  if (!state.login) {
+    replace({
+      pathname: '/auth',
+      state: { nextPathname: nextState.location.pathname }
+    });
+  }
+}
 
 // build the router
-const router = (
+const router = (store) => (
   <Router onUpdate={() => window.scrollTo(0, 0)} history={history}>
     <Route path="/" component={App}>
-      <IndexRoute component={Home}/>
+      <IndexRoute  component={Home} onEnter={(nextState, replace) => checkAuth(nextState, replace,store)}/>
       <Route path="user-edit(/:id)" component={UserEdit}/>
-      <Route path="water" component={Water}/>
-      <Route path="electricity" component={Electricity}/>
+      <Route path="water" component={Water} onEnter={(nextState, replace) => checkAuth(nextState, replace,store)} />
+      <Route path="electricity" component={Electricity} onEnter={(nextState, replace) => checkAuth(nextState, replace,store)}/>
+      <Route path="auth" component={Auth}/>
       <Route path="*" component={NotFound}/>
     </Route>
   </Router>

@@ -9,7 +9,6 @@ function calculate({item, prevItem}) {
     const diff = parseFloat(globalDif) - parseFloat(localDif);
     const adiProc = localDif * 100/globalDif;
     const stProc = 100 - adiProc;
-    console.log(adiProc, stProc);
     const totSum = parseFloat(item.moatzaSum) + parseFloat(item.biuv);
     const adiSum = adiProc * totSum/100;
     const stSum = totSum - adiSum;

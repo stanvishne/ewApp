@@ -21,9 +21,7 @@ export class WaterEditor extends React.Component {
     }
 
     render() {
-        const {handleSubmit, error, invalid, submitting} = this.props;
-
-       
+        const {handleSubmit, error, invalid, submitting} = this.props;  
         return(
             <div className='water-editor'>
                 <PageHeader></PageHeader>

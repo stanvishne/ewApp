@@ -13,11 +13,6 @@ export default class Menu extends React.Component {
             Home
           </NavItem>
         </IndexLinkContainer>
-        <LinkContainer to="/user-edit">
-          <NavItem>
-            Add User <Glyphicon glyph="plus-sign"/>
-          </NavItem>
-        </LinkContainer>
         <LinkContainer to="/water">
           <NavItem>
             Water <Glyphicon glyph="tint"/>

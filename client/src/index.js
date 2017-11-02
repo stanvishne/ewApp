@@ -8,7 +8,7 @@ import { router } from "./router.js";
 // render the main component
 ReactDOM.render(
   <Provider store={store}>
-    {router}
+    {router(store)}
   </Provider>,
   document.getElementById('app')
 );
