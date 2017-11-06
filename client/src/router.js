@@ -14,12 +14,12 @@ function checkAuth(nextState, replace, store) {
   //console.log(replace);
   
   const state = store.getState();
-  if (!state.login) {
-    replace({
-      pathname: '/auth',
-      state: { nextPathname: nextState.location.pathname }
-    });
-  }
+  // if (!state.login) {
+  //   replace({
+  //     pathname: '/auth',
+  //     state: { nextPathname: nextState.location.pathname }
+  //   });
+  // }
 }
 
 // build the router

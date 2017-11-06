@@ -18,6 +18,20 @@ const dummyList = [
       id: 5737
     }
 ];
+
+const elDummyList = [
+    {
+        date: "2017-08-06",
+        globalClock: "125764",
+        localClock: "20392.1",
+        sum: "1539.17",
+        id: 5736
+      }
+];
+
+const waterFile = 'water.txt';
+const electricityFile = 'hashmal.txt';
+
 let db = require(`../db/db.js`);
 var fs = require('fs');
 
@@ -27,7 +41,7 @@ module.exports = app => {
 	});
     /*get list of records */
     app.get(`/water`, (req, res) => {
-        db.getList(res).then(data => {
+        db.getList(waterFile).then(data => {
             res.json(data);
         })                                     
     });
@@ -37,7 +51,7 @@ module.exports = app => {
         let newItem = req.body;
         const update = !!newItem.id;
         if (!update) newItem.id = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
-        db.getList()
+        db.getList(waterFile)
         .then(list => {
 
             let newList = [];
@@ -50,12 +64,12 @@ module.exports = app => {
                 newList = [...list, newItem];
             }
             //list.push(newItem);
-            db.writeList(newList).then(()=>{
+            db.writeList(waterFile, newList).then(()=>{
                 res.json(newList);
             })
         }, error => {
             dummyList.push(newItem);
-            db.writeList(dummyList).then(()=>{
+            db.writeList(waterFile, dummyList).then(()=>{
                 res.json(dummyList);
             })
         })                
@@ -63,10 +77,10 @@ module.exports = app => {
 
     app.delete(`/water`, (req, res) => {
         let item = req.body;
-        db.getList()
+        db.getList(waterFile)
             .then(list => {
                 const newList = list.filter(el => el.id !== item.id);
-                db.writeList(newList).then(() => {
+                db.writeList(waterFile, newList).then(() => {
                     res.json(newList);
                 });
             }, error => {
@@ -74,6 +88,52 @@ module.exports = app => {
             })
     });
     
+    app.get(`/electricity`, (req, res) => {
+        db.getList(electricityFile).then(data => {
+            res.json(data);
+        })                                     
+    });
+
+    app.post(`/electricity`, (req, res) => {               
+        let newItem = req.body;
+        const update = !!newItem.id;
+        if (!update) newItem.id = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
+        db.getList(electricityFile)
+        .then(list => {
+
+            let newList = [];
+            if (update) {
+               newList = list.map(item => {
+                   return item.id === newItem.id ? 
+                        newItem : item;
+                });
+            } else {
+                newList = [...list, newItem];
+            }            
+            db.writeList(electricityFile, newList).then(()=>{
+                res.json(newList);
+            })
+        }, error => {
+            dummyList.push(newItem);
+            db.writeList(electricityFile, elDummyList).then(()=>{
+                res.json(elDummyList);
+            })
+        })                
+    });
+
+    app.delete(`/electricity`, (req, res) => {
+        let item = req.body;
+        db.getList(electricityFile)
+            .then(list => {
+                const newList = list.filter(el => el.id !== item.id);
+                db.writeList(electricityFile, newList).then(() => {
+                    res.json(newList);
+                });
+            }, error => {
+                res.json({});
+            })
+    });
+
     app.post(`/login`, (req, res) => {
         let user = req.body;
         db.login(user)

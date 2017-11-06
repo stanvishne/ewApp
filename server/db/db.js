@@ -2,9 +2,9 @@ var fs = require('fs');
 
 var db = function () {};
 
-db.prototype.getList = function() {
+db.prototype.getList = function(fileName) {
     return promise = new Promise(function(resolve, reject) {
-        fs.readFile('water.txt', 'utf8', function (err,data) {
+        fs.readFile(fileName, 'utf8', function (err,data) {
             if (err) {
               console.log(err);  
               reject(Error("error reading file"));          
@@ -15,9 +15,9 @@ db.prototype.getList = function() {
       });    
 }
 
-db.prototype.writeList = function(list) {
+db.prototype.writeList = function(fileName, list) {
     return promise = new Promise(function(resolve, reject) {        
-        fs.writeFile('water.txt', JSON.stringify(list), function (err) {
+        fs.writeFile(fileName, JSON.stringify(list), function (err) {
             if (err) {
                 reject(Error("error writing file"));    
             } else {

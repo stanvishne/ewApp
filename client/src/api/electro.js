@@ -1,12 +1,12 @@
 import {config} from 'config/config.js';
 
-const url = `${config.baseUrl}water`;
+const url = `${config.baseUrl}electricity`;
 
 function fetchList() {
   return fetch(url);  
 }
 
-function addWater(water) {
+function addItem(water) {
   return fetch(url,{
     method: 'post',
     headers: config.headers,
@@ -14,7 +14,7 @@ function addWater(water) {
   });  
 }
 
-function deleteWater(water) {
+function deleteItem(water) {
   return fetch(url,{
     method: 'delete',
     headers: config.headers,
@@ -23,9 +23,9 @@ function deleteWater(water) {
 }
 
 
-export default class ApiWater {
+export default class ApiElectricity {
     static addEdit(water) {
-        return addWater(water)
+        return addItem(water)
           .then(function(response) {        
             return response.json();
           })
@@ -52,7 +52,7 @@ export default class ApiWater {
     }
 
     static deleteItem(item) {
-      return deleteWater(item)
+      return deleteItem(item)
       .then(function(response) {        
         return response.json();
       })

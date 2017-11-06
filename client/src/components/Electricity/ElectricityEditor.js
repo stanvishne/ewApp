@@ -5,14 +5,14 @@ import { Field, SubmissionError, reduxForm } from "redux-form";
 import { PageHeader, Form } from "react-bootstrap";
 import FormField from "components/common/FormField";
 import FormSubmit from "components/common/FormSubmit";
-import {sagaWaterActions} from 'sagas/sagaWaterConstants';
+import {sagaElectrycityActions} from 'sagas/electricity';
 import {modalActions} from 'reducers/modalConstants';
 
 const INITIAL_VALUES = {
-  shmira: '171'
+  
 }
 
-export class WaterEditor extends React.Component {
+export class ElectricityEditor extends React.Component {
     constructor(props) {
         super(props);
     
@@ -21,17 +21,15 @@ export class WaterEditor extends React.Component {
     }
 
     render() {
-        const {handleSubmit, error, invalid, submitting, waterEditor} = this.props;  
+        const {handleSubmit, error, invalid, submitting} = this.props;  
         return(
             <div className='water-editor'>
-                <PageHeader>Water values {waterEditor ? 'edit' : 'add'}</PageHeader>
+                <PageHeader>Electricity values</PageHeader>
                 <Form horizontal onSubmit={handleSubmit(this.formSubmit)}>
                 <Field type="date" component={FormField} name="date" label="date"/>               
                 <Field component={FormField} name="globalClock" label="global clock"/>
                 <Field component={FormField} name="localClock" label="local clock"/>
-                <Field component={FormField} name="moatzaSum" label="moatza sum"/>
-                <Field component={FormField} name="shmira" label="shmira"/>
-                <Field component={FormField} name="biuv" label="biuv"/>
+                <Field component={FormField} name="sum" label="sum to pay"/>
                 <FormSubmit error={error} invalid={invalid} submitting={submitting} buttonSaveLoading="Saving..."
                     buttonSave="Save data"/>
                 </Form>
@@ -43,7 +41,7 @@ export class WaterEditor extends React.Component {
         const {dispatch} = this.props;
         return new Promise((resolve, reject) => {
           dispatch({
-            type: sagaWaterActions.WATER_EDITOR_ADD,
+            type: sagaElectrycityActions.ADD_ELECTRO_ITEM,
             values,
             callbackError: (error) => {
               reject(new SubmissionError({_error: error}));
@@ -60,8 +58,8 @@ export class WaterEditor extends React.Component {
       }
 }
 
-const WaterEditorForm = reduxForm({
-    form: 'water_edit',
+const ElectricityEditorForm = reduxForm({
+    form: 'electro_edit',
     validate: function (values) {
       const errors = {};
       if (!values.username) {
@@ -69,18 +67,18 @@ const WaterEditorForm = reduxForm({
       }
       return errors;
     },
-  })(WaterEditor);
+  })(ElectricityEditor);
 
   function mapStateToProps(state, own_props) {    
-    const {form = {}, waterEditor, water} = state
-    const {water_editor = {}} = form;
-    const {values = {}} = water_editor;
-    const editor = waterEditor ? water.find(el => el.id == waterEditor) : false;
+    const {form = {}, waterEditor, electro} = state
+    const {electro_editor = {}} = form;
+    const {values = {}} = electro_editor;
+    const editor = waterEditor ? electro.find(el => el.id == waterEditor) : false;
     return {
-      waterEditor: state.waterEditor,
+      waterEditor,
       values,
       initialValues: editor || INITIAL_VALUES
     };
   }
 
-export default connect(mapStateToProps)(WaterEditorForm);
+export default connect(mapStateToProps)(ElectricityEditorForm);
