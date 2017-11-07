@@ -14,3 +14,7 @@ install:
   - cd client/ && npm install
 script:
   - cd ../ && npm run build
+deploy:
+  provider: heroku
+  api_key: $HEROKU_KEY
+  app: ewApp
