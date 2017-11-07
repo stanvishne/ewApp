@@ -10,16 +10,13 @@ import Electricity from "./components/Electricity/Electricity";
 import Auth from "./components/Auth/Auth";
 
 function checkAuth(nextState, replace, store) {
- // console.log(store.getState());
-  //console.log(replace);
-  
   const state = store.getState();
-  // if (!state.login) {
-  //   replace({
-  //     pathname: '/auth',
-  //     state: { nextPathname: nextState.location.pathname }
-  //   });
-  // }
+  if (!state.login) {
+    replace({
+      pathname: '/auth',
+      state: { nextPathname: nextState.location.pathname }
+    });
+  }
 }
 
 // build the router

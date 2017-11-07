@@ -29,8 +29,6 @@ db.prototype.writeList = function(fileName, list) {
 
 db.prototype.login = function(user) {
     return promise = new Promise(function(resolve, reject) {
-        
-        var res = users
         fs.readFile('users.txt', 'utf8', function (err,data) {
             if (err) {
               console.log(err);  

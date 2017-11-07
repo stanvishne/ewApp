@@ -1,5 +1,9 @@
+import {config} from 'config/config.js';
+
+const url = `${config.baseUrl}login`;
+
 function login(values) {
-    return fetch('http://localhost:3000/login',{
+    return fetch(url,{
       method: 'post',
       headers: {
         'Accept': 'application/json, text/plain, */*',

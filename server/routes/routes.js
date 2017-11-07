@@ -140,6 +140,7 @@ module.exports = app => {
             .then(result => {
                 res.json(result);
             }, error => {
+                console.log(error);
                 res.json({logged: false});
             })
     }); 
