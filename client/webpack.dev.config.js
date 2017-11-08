@@ -16,3 +16,12 @@ module.exports.module.loaders[1] = {
 module.exports.plugins.push(
   new ExtractTextPlugin('../css/main.css')
 );
+
+
+module.exports.plugins.push(
+  new webpack.DefinePlugin({
+    'process.env': {
+      'NODE_ENV': JSON.stringify('production')
+    }
+  })
+);

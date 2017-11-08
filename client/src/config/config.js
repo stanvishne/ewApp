@@ -1,5 +1,4 @@
-var baseHref = process.env.PROC_ENV === 'build' ? '/' : 'http://localhost:3000/'
-
+var baseHref = process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/'
 
 export const config  = {
     baseUrl: baseHref,
