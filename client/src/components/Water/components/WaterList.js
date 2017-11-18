@@ -25,8 +25,8 @@ export default class WaterList extends React.Component {
                     <tr>
                         <th>ID</th>
                         <th>date</th>
-                        <th>Global Clock</th>
-                        <th>local Clock</th>
+                        <th>Main Clock</th>
+                        <th>Adiel Clock</th>
                         <th>Biuv</th>
                         <th>Shmira</th>
                         <th>Sum from Moatza</th>

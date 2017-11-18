@@ -19,7 +19,7 @@ export default class Electricity extends React.Component {
     render() {
         return(
             <div className='electricity'>
-                <Button onClick={()=>this.add()}>Add</Button>
+                <Button bsStyle="info"  onClick={()=>this.add()}>Add</Button>
                 <ElectricityList/>
             </div>
         )

@@ -25,7 +25,7 @@ export default class Water extends React.Component {
     render() {
         return(
             <div className='water'>
-                <Button onClick={()=>this.add()}>Add</Button>
+                <Button bsStyle="info" onClick={()=>this.add()}>Add</Button>
                 <WaterList/>
             </div>
         )
