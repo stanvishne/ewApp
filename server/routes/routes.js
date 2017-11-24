@@ -114,7 +114,7 @@ module.exports = app => {
                 res.json(newList);
             })
         }, error => {
-            dummyList.push(newItem);
+            elDummyList.push(newItem);
             db.writeList(electricityFile, elDummyList).then(()=>{
                 res.json(elDummyList);
             })
