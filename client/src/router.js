@@ -11,7 +11,9 @@ import Auth from "./components/Auth/Auth";
 
 function checkAuth(nextState, replace, store) {
   const state = store.getState();
-  if (!state.login) {
+  const auth = process.env.NODE_ENV === 'production';
+  
+  if (!state.login && auth) {
     replace({
       pathname: '/auth',
       state: { nextPathname: nextState.location.pathname }
