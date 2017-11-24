@@ -1,0 +1,17 @@
+.pipe {
+    width: 400px;
+    border: 1px solid black;
+    height: 100px;
+    margin: 20px;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    overflow: hidden;
+    position: absolute;
+    .bubble {        
+        left: -50px;
+        top: 20px;
+        position: relative;        
+        transform: translate(500px,0);
+    }
+
+}
