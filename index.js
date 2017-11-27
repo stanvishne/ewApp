@@ -1,8 +1,8 @@
 const express   = require('express');
-let bodyParser = require('body-parser');
-
-
-const app       = express();
+const bodyParser = require('body-parser');
+const MongoClient = require('mongodb').MongoClient;
+const db = require('./server/config/dbconfig');
+const app = express();
 const port      = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
@@ -27,9 +27,32 @@ app.use(function (req, res, next) {
 });
 
 app.use(express.static(`${__dirname}/client/public/`)); 		// statics
-
-
 require(`./server/routes/routes.js`)(app);						// routes
 
-app.listen(port);										// let the games begin!
-console.log(`Web server listening on port ${port}`);
+// app.listen(port);										// let the games begin!
+// console.log(`Web server listening on port ${port}`);
+const newItem = {
+        date: "2017-06-01",
+        globalClock: "2785.3",
+        localClock: "2411.9",
+        moatzaSum: "0",
+        shmira: "171",
+        biuv: "0",
+        id: 5736
+      };
+
+MongoClient.connect(db.url, (err, database) => {
+        if (err) return console.log(err)
+        
+        // database.collection('water').insert(newItem, (err, result) => {
+        //         if (err) { 
+        //           console.log({ 'error': 'An error has occurred' }); 
+        //         } else {
+        //           console.log(result.ops[0]);
+        //         }
+        // });
+        require(`./server/routes/routes.js`)(app, database);
+        app.listen(port, () => {
+          console.log('We are live on ' + port);
+        });               
+})
