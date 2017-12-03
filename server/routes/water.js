@@ -23,11 +23,11 @@ const waterFile = 'water.txt';
 
 module.exports = function(app, mdb) {
     /*get list of records */
-    app.get(`/water`, (req, res) => {
-        db.getList(waterFile).then(data => {
-            res.json(data);
-        })                                     
-    });
+    // app.get(`/water`, (req, res) => {
+    //     db.getList(waterFile).then(data => {
+    //         res.json(data);
+    //     })                                     
+    // });
      /*add item to records */
     //  app.post(`/water`, (req, res) => {               
     //     let newItem = req.body;

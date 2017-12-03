@@ -38,10 +38,17 @@ const water_routes = require('./water');
 const hashmal_routes = require('./hashmal');
 const dbwater = require('./dbwater');
 
-module.exports = (app,mdb) => {
-    water_routes(app,mdb);
-    hashmal_routes(app,mdb);
-    dbwater(app, mdb);
+module.exports = (app,database) => {
+    // console.log(database);
+    // console.log('=======');
+    // if (database) {
+    //  database.collection('water').find().toArray((err, docs) => {
+    //      console.log(docs);
+    //   }); 
+    // }
+    water_routes(app,database);
+    hashmal_routes(app,database);
+    dbwater(app, database);
     
     app.get(`/`, (req, res) => {
 		res.sendfile('./public/index.html');

@@ -1,10 +1,15 @@
 const express   = require('express');
 const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
-const db = require('./server/config/dbconfig');
+//const db = require('./server/config/dbconfig');
 const app = express();
 const port      = process.env.PORT || 3000;
 
+const mongo_uri = process.env.MONGODB;
+console.log('------------');
+console.log(mongo_uri);
+console.log('------------');
+//mongo_uri = db.url;
 app.use(bodyParser.json());
 
 app.use(function (req, res, next) {
@@ -41,16 +46,8 @@ const newItem = {
         id: 5736
       };
 
-MongoClient.connect(db.url, (err, database) => {
-        if (err) return console.log(err)
-        
-        // database.collection('water').insert(newItem, (err, result) => {
-        //         if (err) { 
-        //           console.log({ 'error': 'An error has occurred' }); 
-        //         } else {
-        //           console.log(result.ops[0]);
-        //         }
-        // });
+MongoClient.connect(mongo_uri, (err, database) => {
+        if (err) return console.log(err)                
         require(`./server/routes/routes.js`)(app, database);
         app.listen(port, () => {
           console.log('We are live on ' + port);
