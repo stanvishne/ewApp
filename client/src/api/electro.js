@@ -14,6 +14,14 @@ function addItem(water) {
   });  
 }
 
+function putItem(water) {
+  return fetch(url,{
+    method: 'put',
+    headers: config.headers,
+    body: JSON.stringify(water)
+  });  
+}
+
 function deleteItem(water) {
   return fetch(url,{
     method: 'delete',
@@ -24,7 +32,7 @@ function deleteItem(water) {
 
 
 export default class ApiElectricity {
-    static addEdit(water) {
+    static add(water) {
         return addItem(water)
           .then(function(response) {        
             return response.json();
@@ -38,6 +46,21 @@ export default class ApiElectricity {
         
 
     }
+
+    static edit(water) {
+      return putItem(water)
+        .then(function(response) {        
+          return response.json();
+        })
+        .then(function(list) {    
+          //console.log(list);      
+            return new Promise(resolve => {
+              resolve(list);
+            });
+        });
+      
+
+  }
 
     static fetchList() {      
       return fetchList()

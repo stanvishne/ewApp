@@ -4,7 +4,9 @@ import {waterActions} from "reducers/waterConstants";
 
 export function* addWater(action) {
     // call the api to add/edit the user
-  const list = yield call(ApiWater.addEdit, action.values);
+
+  const list = action.values.id ? yield call(ApiWater.edit, action.values)
+    : yield call(ApiWater.add, action.values);;
   //return action.callbackError("Some error");   // show an error when the API fails
 
   yield put({

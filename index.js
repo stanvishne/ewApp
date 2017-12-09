@@ -4,12 +4,14 @@ const MongoClient = require('mongodb').MongoClient;
 //const db = require('./server/config/dbconfig');
 const app = express();
 const port      = process.env.PORT || 3000;
+let mongo_uri = '';
+try {
+        const db = require('./server/config/dbconfig');
+        mongo_uri = db.url;
+    } catch (ex) {
+        mongo_uri = process.env.MONGODB;
+    }
 
-const mongo_uri = process.env.MONGODB;
-console.log('------------');
-console.log(mongo_uri);
-console.log('------------');
-//mongo_uri = db.url;
 app.use(bodyParser.json());
 
 app.use(function (req, res, next) {

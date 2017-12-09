@@ -10,7 +10,8 @@ export const sagaElectrycityActions = {
 }
 
 export function* addElectricityItem(action) {
-    const list = yield call(ApiElectricity.addEdit, action.values);
+    const list = action.values.id ? yield call(ApiElectricity.edit, action.values) :
+        yield call(ApiElectricity.add, action.values);
     yield put({
         type: electroActions.LIST_LOADED,
         list

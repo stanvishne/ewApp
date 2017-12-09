@@ -14,6 +14,14 @@ function addWater(water) {
   });  
 }
 
+function putWater(water) {
+  return fetch(url,{
+    method: 'put',
+    headers: config.headers,
+    body: JSON.stringify(water)
+  });  
+}
+
 function deleteWater(water) {
   return fetch(url,{
     method: 'delete',
@@ -24,7 +32,7 @@ function deleteWater(water) {
 
 
 export default class ApiWater {
-    static addEdit(water) {
+    static add(water) {
         return addWater(water)
           .then(function(response) {        
             return response.json();
@@ -35,9 +43,20 @@ export default class ApiWater {
                 resolve(list);
               });
           });
-        
-
     }
+
+    static edit(water) {
+      return putWater(water)
+        .then(function(response) {        
+          return response.json();
+        })
+        .then(function(list) {    
+          //console.log(list);      
+            return new Promise(resolve => {
+              resolve(list);
+            });
+        });
+  }
 
     static fetchList() {      
       return fetchList()
