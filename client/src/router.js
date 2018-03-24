@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import UserEdit from "./components/UserEdit";
 import NotFound from "./components/NotFound";
 import Water from "./components/Water/Water";
+import WaterExt from "./components/WaterExt/Water";
 import Electricity from "./components/Electricity/Electricity";
 import Auth from "./components/Auth/Auth";
 
@@ -29,6 +30,7 @@ const router = (store) => (
       <Route path="user-edit(/:id)" component={UserEdit}/>
       <Route path="water" component={Water} onEnter={(nextState, replace) => checkAuth(nextState, replace,store)} />
       <Route path="electricity" component={Electricity} onEnter={(nextState, replace) => checkAuth(nextState, replace,store)}/>
+      <Route path="waterext" component={WaterExt} onEnter={(nextState, replace) => checkAuth(nextState, replace,store)} />
       <Route path="auth" component={Auth}/>
       <Route path="*" component={NotFound}/>
     </Route>

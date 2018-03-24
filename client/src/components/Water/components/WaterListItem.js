@@ -40,7 +40,12 @@ const WaterListElement = ({item, prevItem, onDelete, onEdit}) => {
                 <Button bsSize="xsmall" className="user-delete" onClick={onDelete}>
                     Delete <Glyphicon glyph="remove-circle"/>
                 </Button>
-            </td>       
+            </td>  
+            <td>
+                <Button onClick={onEdit} bsSize="xsmall">
+                 Edit <Glyphicon glyph="edit"/>
+                 </Button>
+            </td>     
         </tr> 
     );
 }

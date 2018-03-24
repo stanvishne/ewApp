@@ -26,8 +26,9 @@ const ElectricityListItem = ({item, prevItem, onDelete, onEdit}) => {
             <td>{item.globalClock}</td>
             <td>{item.localClock}</td>
             <td>{item.sum}</td>  
-            <td>{calculate({prevItem, item}).adi}</td>
             <td>{calculate({prevItem, item}).st}</td>
+            <td>{calculate({prevItem, item}).adi}</td>
+            
                         
             <td>
                 <Button onClick={onEdit} bsSize="xsmall">

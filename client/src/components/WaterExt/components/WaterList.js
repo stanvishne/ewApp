@@ -23,18 +23,31 @@ export default class WaterList extends React.Component {
                 <Table bordered hover responsive striped>
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>date</th>
-                        <th>Main Clock</th>
-                        <th>First FLour Clock</th>
-                        <th>Biuv</th>
-                        <th>Shmira</th>
-                        <th>Sum from Moatza</th>
-                        <th>First flour</th>
-                        <th>Ground flour</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+                        <th rowSpan='2' >ID</th>
+                        <th rowSpan='2' >date</th>
+                        <th rowSpan='2' >Main Clock</th>
+                        <th rowSpan='2' >Second Floor Clock</th>
+                        <th rowSpan='2' >Total Usage</th>                                                
+                        <th colSpan='6'>First Floor</th>
+                        <th colSpan='6'>Second Floor</th>                        
+                        <th rowSpan='2'>Edit</th>
+                        <th rowSpan='2'>Delete</th>
                     </tr>
+                     <tr>
+                        <th>Usage monthly</th>
+                        <th>Usage Under Limit</th>
+                        <th>Usage Over Limit</th>
+                        <th>Biuv to Pay</th>
+                        <th>Water to Pay</th>
+                        <th>Total To Pay</th>
+
+                        <th>Usage monthly</th>
+                        <th>Usage Under Limit</th>
+                        <th>Usage Over Limit</th>
+                        <th>Biuv to Pay</th>
+                        <th>Water to Pay</th>
+                        <th>Total To Pay</th>
+                    </tr>                   
                     </thead>
                     <tbody>
                         {water.map((item, index) => {
@@ -73,7 +86,7 @@ export default class WaterList extends React.Component {
         dispatch({
             type: 'SHOW_MODAL',
             data: {
-                content: modalContentMapper.WATER_EDITOR
+                content: modalContentMapper.WATER_EXT_EDITOR
             }
         })
     }

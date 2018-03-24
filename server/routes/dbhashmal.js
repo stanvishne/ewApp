@@ -31,7 +31,7 @@ module.exports = (app, database) => {
   });
   app.get(`/electricity`, (req, res) => {      
     if (this.db) {
-      this.db.collection('electricity').find().toArray((err, docs) => {            
+      this.db.collection('electricity').find().sort({'date': 1}).toArray((err, docs) => {            
           res.json(docs);
       });
     }                    

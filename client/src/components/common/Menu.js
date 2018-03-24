@@ -13,16 +13,24 @@ export default class Menu extends React.Component {
             Home
           </NavItem>
         </IndexLinkContainer>
-        <LinkContainer to="/water">
-          <NavItem>
-            Water <Glyphicon glyph="tint"/>
-          </NavItem>
-        </LinkContainer> 
+        {/*
+          <LinkContainer to="/water">
+            <NavItem>
+              Water <Glyphicon glyph="tint"/>
+            </NavItem>
+          </LinkContainer> 
+          */
+        }
         <LinkContainer to="/electricity">
           <NavItem>
             Electricity <Glyphicon glyph="certificate"/>
           </NavItem>
-        </LinkContainer>        
+        </LinkContainer> 
+        <LinkContainer to="/waterext">
+          <NavItem>
+            Water <Glyphicon glyph="tint"/>
+          </NavItem>
+        </LinkContainer>         
       </Nav>
     );
   }

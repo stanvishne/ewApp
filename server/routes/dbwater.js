@@ -31,7 +31,7 @@ module.exports = (app, database) => {
   });
   app.get(`/water`, (req, res) => {      
     if (this.db) {
-      this.db.collection('water').find().toArray((err, docs) => {            
+      this.db.collection('water').find().sort({'date': 1}).toArray((err, docs) => {            
           res.json(docs);
       });
     }                    

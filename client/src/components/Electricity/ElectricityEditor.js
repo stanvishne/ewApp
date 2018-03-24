@@ -26,10 +26,10 @@ export class ElectricityEditor extends React.Component {
             <div className='water-editor'>
                 <PageHeader>Electricity values</PageHeader>
                 <Form horizontal onSubmit={handleSubmit(this.formSubmit)}>
-                <Field type="date" component={FormField} name="date" label="date"/>               
-                <Field component={FormField} name="globalClock" label="global clock"/>
-                <Field component={FormField} name="localClock" label="local clock"/>
-                <Field component={FormField} name="sum" label="sum to pay"/>
+                <Field type="date" component={FormField} name="date" label="Date"/>               
+                <Field component={FormField} name="globalClock" label="Global clock"/>
+                <Field component={FormField} name="localClock" label="Second floor clock"/>
+                <Field component={FormField} name="sum" label="Sum to pay from check"/>
                 <FormSubmit error={error} invalid={invalid} submitting={submitting} buttonSaveLoading="Saving..."
                     buttonSave="Save data"/>
                 </Form>

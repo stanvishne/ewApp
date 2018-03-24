@@ -24,10 +24,10 @@ export default class ElectricityList extends React.Component {
                         <th>ID</th>
                         <th>date</th>
                         <th>Main Clock</th>
-                        <th>Adiel Clock</th>
+                        <th>First flour Clock</th>
                         <th>Sum</th>
-                        <th>Adiel</th>
-                        <th>Stas</th>
+                        <th>First flour</th>
+                        <th>Second flour</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
